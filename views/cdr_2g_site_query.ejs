@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+</head>
+<body>
+
+<div class="accordion-group">
+    <div class="accordion-heading">
+        <div class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+            <legend>查詢 CDR <i class="icon-chevron-down"></i></legend>
+        </div>
+    </div>
+    <div id="collapseTwo" class="accordion-body collapse in">
+        <div class="accordion-inner">
+
+
+<form class="form-horizontal" method="post">
+    <fieldset>
+        <!--<legend>查詢 CDR</legend>-->
+
+        <table class="table table-hover table-condensed borderless">
+            <caption></caption>
+            <thead>
+            <tr>
+            <tr>
+                <th id="name0">名稱</th>
+                <th id="field0">field</th>
+                <th id="input0">input</th>
+                <th id="sample0">sample</th>
+            </tr>
+            </thead>
+
+            <tbody>
+
+            <% for (var key in schema){
+                if(key=='_id') continue ;
+            %>
+                <!--<tr>-->
+                    <!--<td id="column"><%= schema[key].column %></td>-->
+                    <!--<td id="field17"><label for="<%= key%>"><%= key%></label></td>-->
+                    <!--<td id="input17"><input type="text"  class="input-large" id="<%= key%>" name="<%= key%>"/></td>-->
+                    <!--<td id="sample17">schema[key].sample</td>&lt;!&ndash;type="date"&ndash;&gt;-->
+                <!--</tr>-->
+            <%}%>
+
+            <tr>
+                <td id="name17">日期</td>
+                <td id="field17"><label for="DATE">DATE</label></td>
+                <td id="input17"><input type="text"  class="input-large" id="DATE" name="DATE"/></td>
+                <td id="sample17">2014-12-21</td><!--type="date"-->
+            </tr>
+            <tr>
+                <td id="name13">小時</td>
+                <td id="field13"><label for="HOUR">HOUR</label></td>
+                <td id="input13"><input type="text"  class="input-large" id="HOUR" name="HOUR"/></td>
+                <td id="sample13">10</td><!--type="datetime-local"-->
+            </tr>
+
+            <tr>
+                <td id="name2">縣市</td>
+                <td id="field2"><label for=>COUNTRY</label></td>
+                <td id="input2"><input type="text" class="input-large" id="COUNTRY" name="COUNTRY"/></td>
+                <td id="sample2">台東縣</td>
+            </tr>
+            <tr>
+                <td id="name3">區域</td>
+                <td id="field3"><label for="DISTRICT">DISTRICT</label></td>
+                <td id="input3">
+                    <input type="text" class="input-medium" id="calling_imei" name="DISTRICT" placeholder="DISTRICT"/>
+                </td>
+                <td id="sample3">大武鄉</td>
+            </tr>
+            <tr>
+                <td id="name4">基站名稱</td>
+                <td id="field4"><label for="SITE_NAME">SITE_NAME</label></td>
+                <td id="input4">
+                    <input type="text" class="input-medium" id="SITE_NAME" name="SITE_NAME" placeholder="SITE_NAME"/>
+                </td>
+                <td id="sample4">太和山機房</td>
+            </tr>
+            <tr>
+                <td id="name5">SITE_ID</td>
+                <td id="field5"><label for="SITE_ID">SITE_ID</label></td>
+                <td id="input5"><input type="text" class="input-large" id="SITE_ID" name="SITE_ID"/></td>
+                <td id="sample5">96512</td>
+            </tr>
+            <tr>
+                <td id="name11">結束碼</td>
+                <td id="field11"><label for="END_CODE">END_CODE</label></td>
+                <td id="input11"><input type="text" class="input-large" id="END_CODE" name="END_CODE"/></td>
+                <td id="sample11">0</td>
+            </tr>
+            <tr>
+                <td id="name14">卡別</td>
+                <td id="field14"><label for="SIM_TYPE">SIM_TYPE</label></td>
+                <td id="input14">
+                    <input type="text" class="input-medium" id="SIM_TYPE" name="SIM_TYPE"/>
+                </td>
+                <td id="sample14">SIM</td>
+            </tr>
+            <tr>
+                <td id="name15">業者別</td>
+                <td id="field15"><label for="CARRIER">CARRIER</label></td>
+                <td id="input15"><input type="text" class="input-large" id="CARRIER" name="CARRIER"/></td>
+                <td id="sample15">中華電信</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">search</button>
+        </div>
+    </fieldset>
+</form>
+<p></p>
+        </div>
+    </div>
+</div>
+
+<% if (resp) { %>
+<h3>搜尋結果</h3></br>
+<% if (resp.length == 0) { %>
+<h4> 查無資料!</h4>
+<% } else /*if (resp.length < 20)*/{%>
+<!--<h4> 回傳 <#= resp.length %> 筆</h4>-->
+<h3> 總量 : <%= db_count %>筆資料, 符合<%= totalcount %> 筆, 顯示前 <%= resp.length %> 筆</h3>
+
+<table class="table table-hover table-condensed">
+    <caption></caption>
+    <thead>
+    <tr>
+    <tr>
+        <th>#</th>
+
+        <% for(var key in resp[0]){
+            if(key=='_id') continue ;
+        %>
+        <th id="th_<%= key%>"><%= key %></th>
+        <%}%>
+        <!--<th>_id</th>-->
+        <!--<th id="th_DATE"    >日期</th>-->
+        <!--<th id="th_HOUR"    >小時</th>-->
+        <!--<th id="th_COUNTY"  >縣市</th>-->
+        <!--<th id="th_DISTRICT">區域</th>-->
+        <!--<th id="h_SITE_NAME">基站</th>-->
+        <!--<th id="th_SITE_ID" >基站ID</th>-->
+        <!--<th id="th_END_CODE">結束碼</th>-->
+        <!--<th id="th_SIM_TYPE">卡別</th>-->
+        <!--<th id="th_CARRIER" >業者別</th>-->
+        <!--<th id="th_COUNT"   >HO_次數</th>-->
+        <!--<th id="th_SECOND"  >HO_秒數</th>-->
+        <!--<th id="th_MINuTE"  >HO_分鐘</th>-->
+    </tr>
+    </thead>
+    <tbody>
+    <% var i=1; %>
+    <% resp.forEach( function(body){ %>
+    <tr>
+        <td id="#"><%= i++ %></td>
+
+        <% for (var key in body){
+            if(key=='_id') continue ;
+        %>
+        <th><%= JSON.stringify(body[key]) %></th>
+        <%}%>
+
+        <!--<td id="_id"        text="日期時間" ><%= JSON.stringify(body._id) %></td>-->
+        <!--<td id="DATE"       text="日期" ><%= JSON.stringify(body.DATE) %></td>-->
+        <!--<td id="HOUR"       text="小時" ><%= JSON.stringify(body.HOUR) %></td>-->
+        <!--<td id="COUNTRY"    text="縣市" ><%= JSON.stringify(body.COUNTRY) %></td>-->
+        <!--<td id="DISTRICT"   text="區域" ><%= JSON.stringify(body.DISTRICT) %></td>-->
+        <!--<td id="SITE_NAME"  text="基站" ><%= JSON.stringify(body.SITE_NAME) %></td>-->
+        <!--<td id="SITE_ID"    text="基站" ><%= JSON.stringify(body.SITE_ID) %></td>-->
+        <!--<td id="END_CODE"   text="結束" ><%= JSON.stringify(body.END_CODE) %></td>-->
+        <!--<td id="SIM_TYPE"   text="卡別" ><%= JSON.stringify(body.SIM_TYPE) %></td>-->
+        <!--<td id="CARRIER"    text="業者" ><%= JSON.stringify(body.CARRIER) %></td>-->
+        <!--<td id="HO_COUNT"   text="次數" ><%= JSON.stringify(body.HO_CALLED_COUNT) %></td>-->
+        <!--<td id="HO_SECOND"  text="秒數" ><%= JSON.stringify(body.HO_CALLED_SECOND) %></td>-->
+        <!--<td id="HO_MINUTES" text="分鐘" ><%= JSON.stringify(body.HO_CALLED_MINUTES) %></td>-->
+    </tr>
+    <% }); %>
+    </tbody>
+</table>
+<% } %>
+<% } else { %>
+<h3>總量 : <%= totalcount %>筆資料</h3>
+<% }%>
+
+</body>
+</html>

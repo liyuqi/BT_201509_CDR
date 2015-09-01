@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+</head>
+<body>
+
+<fieldset>
+    <legend>查詢 CDR</legend>
+</fieldset>
+
+<% if (resp) { %>
+<!--<h3>顯示結果</h3><br/>-->
+<% if (resp.length == 0) { %>
+<h4>查無資料!</h4>
+<% } else{ %>
+<h3> 總量 : <%= db_count %>筆資料, 符合<%= totalcount %> 筆, 顯示前 <%= resp.length %> 筆</h3>
+
+
+
+    <table class="table table-hover table-condensed">
+        <caption></caption>
+        <thead>
+        <tr>
+            <td id="#"></td>
+            <th id="th_date_time"               >日期</th>
+            <th id="th_charging_start_time"     >時間</th>
+            <!--<th id="th_charging_end_time"       >通話結束時間</th>-->
+            <script>//依基站</script>
+            <th id="th_exchange_id"             >交換機</th>
+            <script>//依手機</script>
+            <th id="th_call_transaction_type"   >Call Transaction Type</th>
+            <!--<th th_id="cell_brand"             >手機廠牌</th>-->
+            <!--<th th_id="cell_serial"            >手機型號</th>-->
+
+            <!--<th id="th_radio_network_type"      >網路</th>-->
+            <th id="th_cause_for_termination"   >結束碼</th>
+            <th id="th_orig_mcz_duration"       >通話時間</th>
+
+            <th id="th_called_number"           >被叫號碼</th>
+            <!--<th id="th_calling_imei"           >IMEI</th>-->
+            <!--<th id="th_calling_imsi"           >IMSI</th>-->
+            <!--<th id="th_calling_number"         >主叫號碼</th>-->
+
+            <!--<th id="th_calling_subs_last_ci"   >Last CellID</th>-->
+            <!--<th id="th_calling_subs_last_lac"  >Last LAC</th>-->
+            <!--<th id="th_calling_subs_last_mcc"  >Last MCC</th>-->
+            <!--<th id="th_calling_subs_last_mnc"  >Last MNC</th>-->
+        </tr>
+        </thead>
+        <tbody>
+        <% var i = 1; %>
+        <% resp.forEach( function(body){ %>
+        <tr>
+            <!--<td><%# body.date_time %></td>-->
+            <!--<td><%# body._id %></td>-->
+            <td id="#"><%= i++ %></td>
+            <td id="date_time"          text="日期"   ><%= body.STARTOFCHARGINGDATE %></td>
+            <td id="charging_start_time"text="開始"   ><%= body.TIMESTAMP %></td>
+            <!--<td id="charging_end_time"  text="通話結束" ><%= body.charging_end_time %></td>-->
+            <script>//依基站</script>
+            <td id="exchange_id"        text="＿交換機" ><%= body.EXCHANGEID %></td>
+            <script>//依手機</script>
+            <td id="call_transaction_type"text="收發類型" ><%= body.CALLTRANSACTIONTYPE %></td>
+            <!--<th id="cell_brand"             text="手機廠牌" >手機廠牌</th>-->
+            <!--<th id="cell_serial"            text="手機型號" >手機型號</th>-->
+
+            <!--<td id="radio_network_type" text="＿＿網路" ><%= body.radio_network_type %></td>-->
+            <td id="cause_for_termination" text="＿結束碼"><%= body.CAUSEFORTERMINATION %></td>
+            <td id="d_or_mcz_duration"  text="通話時間" ><%= body.CALLDURATION %></td>
+
+            <td id="called_number"      text="被叫號碼" ><%= body.MCRDESTINATIONNUMBER %></td>
+            <!--<td id="calling_imei"       text="IMEI"     ><%= body.SERVEDIMEI %></td>-->
+            <!--<td id="calling_imsi"       text="IMSI"     ><%= body.SERVEDIMSI %></td>-->
+            <!--<td id="calling_number"     text="主叫號碼" ><%= body.SERVEDMSISDN %></td>-->
+
+            <!--<td id="calling_subs_last_ci"  ><%= body.calling_subs_last_ci %></td>-->
+            <!--<td id="calling_subs_last_lac" ><%= body.calling_subs_last_lac %></td>-->
+            <!--<td id="calling_subs_last_mcc" ><%= body.calling_subs_last_mcc %></td>-->
+            <!--<td id="calling_subs_last_mnc" ><%= body.calling_subs_last_mnc %></td>-->
+        </tr>
+        <% }); %>
+        </tbody>
+    </table>
+    <% } %>
+<% } else {} %>
+</body>
+</html>

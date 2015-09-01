@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link href="/stylesheets/c3.css" rel="stylesheet" type="text/css">
+    <script src="/javascripts/d3.min.js" charset="utf-8"></script>
+    <script src="/javascripts/c3.min.js"></script>
+</head>
+<body>
+
+<div class="accordion-group">
+    <div class="accordion-heading">
+        <div class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+            <legend>查詢 CDR <i class="icon-chevron-down"></i></legend>
+        </div>
+    </div>
+    <div id="collapseTwo" class="accordion-body collapse in">
+        <div class="accordion-inner">
+
+<form class="form-horizontal" method="post">
+    <fieldset>
+        <!--<legend>查詢 CDR</legend>-->
+
+        <table class="table table-hover table-condensed borderless">
+            <caption></caption>
+            <thead>
+            <tr>
+            <tr>
+                <th id="name0">名稱</th>
+                <th id="field0">field</th>
+                <th id="input0">input</th>
+                <th id="sample0">sample</th>
+            </tr>
+            </thead>
+
+            <tbody>
+
+            <tr>
+                <td id="name17">日期時間</td>
+                <td id="field17"><label for="date_time">date_time</label></td>
+                <td id="input17"><input type="text"  class="input-large" id="date_time" name="date_time"/></td>
+                <td id="sample17">2014-12-21</td><!--type="date"-->
+            </tr>
+            <tr>
+                <td id="name13">通話開始時間</td>
+                <td id="field13"><label for="charging_start_time">charging_start_time</label></td>
+                <td id="input13"><input type="text"  class="input-large" id="charging_start_time"
+                                        name="charging_start_time"/></td>
+                <td id="sample13">2014-12-21 24:59:59</td><!--type="datetime-local"-->
+            </tr>
+            <tr>
+                <td id="name12">通話結束時間</td>
+                <td id="field12"><label for="charging_end_time">charging_end_time</label></td>
+                <td id="input12"><input type="type"  class="input-large" id="charging_end_time" name="charging_end_time"/></td>
+                <td id="sample12">2014-12-21 01:01:01</td><!--type="datetime-local"-->
+            </tr>
+
+            <tr>
+                <td id="name2">被叫號碼</td>
+                <td id="field2"><label for=>called_number</label></td>
+                <td id="input2"><input type="text" class="input-large" id="called_number" name="called_number"/></td>
+                <td id="sample2">926743611</td>
+            </tr>
+            <tr>
+                <td id="name3">IMEI</td>
+                <td id="field3"><label for="imei">imei</label></td>
+                <td id="input3">
+                    <input type="text" class="input-medium" id="calling_imei" name="calling_imei" placeholder="calling_imei"/>
+                    <input type="text" class="input-medium" id="called_imei"  name="called_imei"  placeholder="called_imei"/>
+                </td>
+                <td id="sample3">358097051808970</td>
+            </tr>
+            <tr>
+                <td id="name4">IMSI</td>
+                <td id="field4"><label for="imsi">imsi</label></td>
+                <td id="input4">
+                    <input type="text" class="input-medium" id="calling_imsi" name="calling_imsi" placeholder="calling_imsi"/>
+                    <input type="text" class="input-medium" id="called_imsi"  name="called_imsi"  placeholder="called_imsi"/>
+                </td>
+                <td id="sample4">466974101216559</td>
+            </tr>
+            <tr>
+                <td id="name5">主叫號碼</td>
+                <td id="field5"><label for="calling_number">calling_number</label></td>
+                <td id="input5"><input type="text" class="input-large" id="calling_number" name="calling_number"/></td>
+                <td id="sample5">886920595996</td>
+            </tr>
+
+            <!-- <tr>
+                 <td id="name6">Last CellID</td>
+                 <td id="field6"><label for="calling_subs_last_ci">calling_subs_last_ci</label></td>
+                 <td id="input6"><input type="text" class="input-large" id="calling_subs_last_ci" name="calling_subs_last_ci"/></td>
+                 <td id="sample6">14833</td>
+             </tr>
+             <tr>
+                 <td id="name7">Last LAC</td>
+                 <td id="field7"><label for="calling_subs_last_lac">calling_subs_last_lac</label></td>
+                 <td id="input7"><input type="text" class="input-large" id="calling_subs_last_lac" name="calling_subs_last_lac"/></td>
+                 <td id="sample7">11111</td>
+             </tr>
+             <tr>
+                 <td id="name8">Last MCC</td> <td id="field8"><label for="calling_subs_last_mcc">calling_subs_last_mcc</label></td>
+                 <td id="input8"><input type="text" class="input-large" id="calling_subs_last_mcc" name="calling_subs_last_mcc"/></td>
+                 <td id="sample8">466</td>
+             </tr>
+             <tr>
+                 <td id="name9">Last MNC</td>
+                 <td id="field9"><label for="calling_subs_last_mnc">calling_subs_last_mnc</label></td>
+                 <td id="input9"><input type="text" class="input-large" id="calling_subs_last_mnc" name="calling_subs_last_mnc"/></td>
+                 <td id="sample9">97</td>
+             </tr>-->
+            <tr>
+                <td id="name10">交換機</td>
+                <td id="field10"><label for="exchange_id">exchange_id</label></td>
+                <td id="input10"><input type="text" class="input-large" id="exchange_id" name="exchange_id"/></td>
+                <td id="sample10">886935420431</td>
+            </tr>
+            <tr>
+                <td id="name11">結束碼</td>
+                <td id="field11"><label for="cause_for_termination">cause_for_termination</label></td>
+                <td id="input11"><input type="text" class="input-large" id="cause_for_termination"
+                                        name="cause_for_termination"/></td>
+                <td id="sample11">00000000</td>
+            </tr>
+            <tr>
+                <td id="name14">通話時間</td>
+                <td id="field14"><label for="orig_mcz_duration">orig_mcz_duration</label></td>
+                <td id="input14">
+                    <input type="text" class="input-medium" id="orig_mcz_duration" name="orig_mcz_duration" placeholder="orig_mcz_duration"/>
+                    <input type="text" class="input-medium" id="term_mcz_duration" name="term_mcz_duration" placeholder="term_mcz_duration"/>
+                </td>
+                <td id="sample14">11</td>
+            </tr>
+            <tr>
+                <td id="name15">Radio Network Type</td>
+                <td id="field15"><label for="radio_network_type">radio_network_type</label></td>
+                <td id="input15"><input type="text" class="input-large" id="radio_network_type" name="radio_network_type"/></td>
+                <td id="sample15">02</td>
+            </tr>
+            <tr>
+                <td id="name16">Record Type</td>
+                <td id="field16"><label for="record_type">record_type</label></td>
+                <td id="input16"><input type="text" class="input-large" id="record_type" name="record_type"/></td>
+                <td id="sample16">1 1:MOC/2:MTC</td>
+            </tr>
+
+            </tbody>
+        </table>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">search</button>
+        </div>
+    </fieldset>
+</form>
+
+        </div>
+    </div>
+</div>
+
+<p></p>
+
+<% if (resp) { %>
+<h3>搜尋結果</h3></br>
+<% if (resp.length == 0) { %>
+<h4> 查無資料!</h4>
+<% } else /*if (resp.length < 20)*/{%>
+<h4> 回傳 <%= resp.length %> 筆</h4>
+
+<table class="table table-hover table-condensed">
+    <caption></caption>
+    <thead>
+    <tr>
+    <tr>
+        <th>Timestamp</th>
+        <th>Identifier</th>
+        <th>Message</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% resp.forEach( function(body){ %>
+    <tr>
+        <% var key; %>
+        <td id="#"><%= i++ %></td>
+        <td id="_id"  text="日期時間" ><%= JSON.stringify(body._id) %></td>
+        <td id="value"  text="日期時間" ><%= JSON.stringify(body. alue) %></td>
+    </tr>
+    <% }); %>
+    </tbody>
+</table>
+<% } %>
+<% } else { %>
+<h3>總量 : <%= totalcount %>筆資料</h3>
+<% } %>
+
+</body>
+</html>
